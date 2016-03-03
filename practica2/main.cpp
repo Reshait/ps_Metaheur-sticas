@@ -3,6 +3,6 @@
 
 class NeighOperatorKP{
     SolutionKP* generateNeight(SolutionKP* sCurrent, int pos){
-        
+        //ESTO ES DEMASIADO FÁCIL
     }
 }
