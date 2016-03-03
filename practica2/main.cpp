@@ -21,9 +21,10 @@ public:
         Solution *neighSol = NULL;
 
         int numPosibilities = operator.getNumPosParam();
+        random.generatePermutation(permutation, numPosibili);
 
         for(int i = 0; i < numPosibilities; i++){
-            neightSol = operator.generateNeigh(sCurrent, 0);
+            neightSol = operator.generateNeigh(sCurrent, permutation[i]);
             problemInstance.evaluate(neightSol);
 
             if(problemInstance.isBetter(neighSol, sCurrent)){
