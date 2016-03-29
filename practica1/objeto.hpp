@@ -9,16 +9,21 @@ class Objeto{
 		bool enMochila_;
 
 	public:
-		Objeto();
-		int getPeso(){ return peso_; }
-		int getBeneficio(){ return beneficio_; }
-		int getPosicion(){ return posicion_; }
-		bool getEnMochila(){ return enMochila_; }
+		Objeto(){};
+		inline int getPeso(){ return peso_; }
+		inline int getBeneficio(){ return beneficio_; }
+		inline int getPosicion(){ return posicion_; }
+		inline bool getEnMochila(){ return enMochila_; }
 
-		void setPeso(int peso){ peso_ = peso; }
-		void setBeneficio(int beneficio){ beneficio_ = beneficio; }
-		void setPosicion(int posicion){ posicion_ = posicion; }
-		void setEnMochila(){enMochila_ = true; }
+		inline void setPeso(int peso){ peso_ = peso; }
+		inline void setBeneficio(int beneficio){ beneficio_ = beneficio; }
+		inline void setPosicion(int posicion){ posicion_ = posicion; }
+		inline void setEnMochila(int enMochila){
+			if(enMochila)
+				enMochila_ = true; 
+			else
+				enMochila_ = false;
+		}
 };
 
 #endif
