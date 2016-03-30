@@ -6,6 +6,7 @@
 
 using std::vector;
 using std::cout;
+using std::endl;
 
 class SolutionKP{
 	private:
@@ -14,7 +15,10 @@ class SolutionKP{
 		int pTotal_;
 
 	public:
-		SolutionKP(){}
+		SolutionKP(){
+			setBeneficioTotal(0);
+			setPesoTotal(0);
+		}
 		inline vector<bool> getVectorSolucion(){ return vSol_; }
 		inline int getBeneficioTotal(){ return bTotal_; }
 		inline int getPesoTotal(){ return pTotal_; }
@@ -33,6 +37,7 @@ class SolutionKP{
 			cout << " ]" << endl;
 		}
 
+		friend class SolGeneratorKP;	
 };
 
 #endif

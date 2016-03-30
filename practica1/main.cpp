@@ -1,20 +1,25 @@
 #include "objeto.hpp"
 #include "instanceKP.hpp"
 #include "solutionKP.hpp"
+#include "solGenerator.hpp"
 
 using namespace std;
 
 int main(){
-	InstanceKP Mochila;
+	InstanceKP I;
+	SolGeneratorKP S;
 	string nombreFichero;
 
 	do{
 		cout << "Introduzca el nombre del fichero a cargar ..: ";
 		cin >> nombreFichero;
-		Mochila.rellenaVector(nombreFichero);
-	}while(!Mochila.rellenaVector(nombreFichero));
+		I.rellenaVector(nombreFichero);
+	}while(!I.rellenaVector(nombreFichero));
 	
-	Mochila.imprimeVector();
+//	I.imprimeVector();
+	for(int i = 0; i < 10; i++){
+		S.generaSolucion(I);
+	}
 	
 	return 0;
 }

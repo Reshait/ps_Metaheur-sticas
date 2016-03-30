@@ -90,3 +90,9 @@ bool InstanceKP::estaVacio(){
 		return true;
 	return false;
 }
+
+/*
+int InstanceKP::getValorAp(SolutionKP S){
+
+}
+*/
