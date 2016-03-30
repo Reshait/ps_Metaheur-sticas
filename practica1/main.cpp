@@ -1,10 +1,10 @@
 #include "objeto.hpp"
-#include "instance.hpp"
+#include "instanceKP.hpp"
 
 using namespace std;
 
 int main(){
-	Instance Mochila;
+	InstanceKP Mochila;
 	string nombreFichero;
 
 	do{

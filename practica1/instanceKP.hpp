@@ -1,5 +1,5 @@
-#ifndef __INSTANCE_HPP__
-#define __INSTANCE_HPP__
+#ifndef __INSTANCEKP_HPP__
+#define __INSTANCEKP_HPP__
 #include <iostream>
 #include <vector>
 #include <cstdlib> //para el atoi
@@ -14,18 +14,25 @@ using std::ifstream;
 using std::stringstream;
 using std::endl;
 using std::cout;
+using std::cin;
 
-class Instance{
+class InstanceKP{
 	private:
 		vector<Objeto> vector_;
+		int pesoMax_;
+
 	public:
-		Instance(){};
-		bool estaVacio();
-		void setVector(const vector<Objeto> &vector);
+		InstanceKP(){};
 		const vector<Objeto> getVector();
+		inline int getPesoMax(){ return pesoMax_; }
+
+		void setVector(const vector<Objeto> &vector);
+		void setPesoMax(const int peso);
 		void aniadeElemento(const Objeto &O);
 		bool rellenaVector(const string &nombreFichero);
 		void imprimeVector();
+		bool estaVacio();
+
 };
 
 #endif

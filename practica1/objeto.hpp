@@ -18,12 +18,7 @@ class Objeto{
 		inline void setPeso(int peso){ peso_ = peso; }
 		inline void setBeneficio(int beneficio){ beneficio_ = beneficio; }
 		inline void setPosicion(int posicion){ posicion_ = posicion; }
-		inline void setEnMochila(int enMochila){
-			if(enMochila)
-				enMochila_ = true; 
-			else
-				enMochila_ = false;
-		}
+		inline void setEnMochila(bool enMochila){ enMochila_ = enMochila; }
 };
 
 #endif
