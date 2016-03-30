@@ -20,14 +20,17 @@ class InstanceKP{
 	private:
 		vector<Objeto> vector_;
 		int pesoMax_;
+		int numElementos_;
 
 	public:
 		InstanceKP(){};
 		const vector<Objeto> getVector();
 		inline int getPesoMax(){ return pesoMax_; }
+		inline int getNumEle(){ return numElementos_; }
 
 		void setVector(const vector<Objeto> &vector);
 		void setPesoMax(const int peso);
+		inline void setNumEle(int numEle){ numElementos_ = numEle; }
 		void aniadeElemento(const Objeto &O);
 		bool rellenaVector(const string &nombreFichero);
 		void imprimeVector();

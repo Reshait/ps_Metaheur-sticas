@@ -1,5 +1,6 @@
 #include "objeto.hpp"
 #include "instanceKP.hpp"
+#include "solutionKP.hpp"
 
 using namespace std;
 
