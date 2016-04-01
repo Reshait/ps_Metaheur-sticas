@@ -1,3 +1,4 @@
+#include <ctime>
 #include "objeto.hpp"
 #include "instanceKP.hpp"
 #include "solutionKP.hpp"
@@ -10,12 +11,17 @@ int main(){
 	SolGeneratorKP S;
 	string nombreFichero;
 
-	do{
+	srand(time(NULL));
+
+/*	do{
 		cout << "Introduzca el nombre del fichero a cargar ..: ";
 		cin >> nombreFichero;
 		I.rellenaVector(nombreFichero);
 	}while(!I.rellenaVector(nombreFichero));
-	
+*/
+	I.rellenaVector("knaPi.csv"); //cambiar por lo anterior cuando esté terminado.
+
+
 //	I.imprimeVector();
 	for(int i = 0; i < 10; i++){
 		S.generaSolucion(I);
