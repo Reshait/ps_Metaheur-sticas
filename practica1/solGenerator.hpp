@@ -10,19 +10,24 @@
 
 using std::vector;
 using std::list;
+using std::to_string;
+using std::sort;
 
 class SolGeneratorKP{
 	private:
 		list<SolutionKP> lista_;
+		SolutionKP mejorSol_;
 
 	public:
-		SolGeneratorKP(){};
-		inline void aniadeElementoLista(SolutionKP S){ lista_.push_back(S); }
+		SolGeneratorKP(){
+			mejorSol_.setPesoTotal(0);
+			mejorSol_.setBeneficioTotal(0);
+		}
 
+		inline void aniadeElementoLista(SolutionKP S){ lista_.push_back(S); }
 		inline void generaSolucion(InstanceKP I){
 			SolutionKP S;
 			int iteracion = 0;
-			//int i;
 			vector<Objeto>::iterator i;
 			
 			while(S.getPesoTotal() <  I.getPesoMax() && iteracion < 200){
@@ -37,7 +42,7 @@ class SolGeneratorKP{
 								i->setEnMochila(1);
 								S.setPesoTotal(S.getPesoTotal() + i->getPeso());
 								S.setBeneficioTotal(S.getBeneficioTotal() + i->getBeneficio());	
-								//S.vSol_[i] = 1; --> falta por hacer.
+								S.aniadePosSolucion(aleatorio);
 							}
 							break;
 						}
@@ -49,8 +54,27 @@ class SolGeneratorKP{
 			cout << "Beneficio obtenido\t ..: " << S.getBeneficioTotal() << endl;
 			cout << "Peso Total obtenido\t ..: " << S.getPesoTotal() << endl;
 			cout << "Peso Máximo permitido\t ..: " << I.getPesoMax() << endl;
+			sort(S.vSol_.begin(), S.vSol_.end());
+			S.imprimePosSolucion();
 
 			aniadeElementoLista(S);
+		}
+
+		inline void imprimeMejorSolucion(){
+			list<SolutionKP>::iterator it;
+
+			for(it = lista_.begin(); it != lista_.end(); it++){
+				if(it->getBeneficioTotal() > mejorSol_.getPesoTotal()){
+					mejorSol_.setPesoTotal(it->getPesoTotal());
+					mejorSol_.setBeneficioTotal(it->getBeneficioTotal());
+					mejorSol_.setVector(it->getVector());
+				}
+			}
+			cout << "====================================" << endl;
+			cout << "Mejor Beneficio\t\t ..: " << mejorSol_.getBeneficioTotal() << endl;
+			cout << "Peso correspondiente\t ..: " << mejorSol_.getPesoTotal() << endl;
+			cout << "Vector de posiciones usadas : " << endl;
+			mejorSol_.imprimePosSolucion();
 		}
 };
 

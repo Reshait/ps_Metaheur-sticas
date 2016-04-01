@@ -23,9 +23,11 @@ int main(){
 
 
 //	I.imprimeVector();
-	for(int i = 0; i < 10; i++){
+	for(int i = 0; i < 50; i++){
 		S.generaSolucion(I);
 	}
+
+	S.imprimeMejorSolucion();
 	
 	return 0;
 }
