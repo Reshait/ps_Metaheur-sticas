@@ -62,7 +62,6 @@ bool InstanceKP::rellenaVector(const string &nombreFichero){
 			O.setPosicion(atoi(posicion.c_str()));
 			O.setBeneficio(atoi(beneficio.c_str()));
 			O.setPeso(atoi(peso.c_str()));
-			//O.setEnMochila(atoi(enMochila.c_str()));
 			O.setEnMochila(false);
 
 			aniadeElemento(O);
@@ -91,8 +90,3 @@ bool InstanceKP::estaVacio(){
 	return false;
 }
 
-/*
-int InstanceKP::getValorAp(SolutionKP S){
-
-}
-*/

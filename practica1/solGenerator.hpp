@@ -19,10 +19,7 @@ class SolGeneratorKP{
 		SolutionKP mejorSol_;
 
 	public:
-		SolGeneratorKP(){
-			mejorSol_.setPesoTotal(0);
-			mejorSol_.setBeneficioTotal(0);
-		}
+		SolGeneratorKP(){}
 
 		inline void aniadeElementoLista(SolutionKP S){ lista_.push_back(S); }
 		inline void generaSolucion(InstanceKP I){
@@ -53,7 +50,7 @@ class SolGeneratorKP{
 			}
 			cout << "Beneficio obtenido\t ..: " << S.getBeneficioTotal() << endl;
 			cout << "Peso Total obtenido\t ..: " << S.getPesoTotal() << endl;
-			cout << "Peso Máximo permitido\t ..: " << I.getPesoMax() << endl;
+			cout << "Peso Máximo permitido\t  ..: " << I.getPesoMax() << endl;
 			sort(S.vSol_.begin(), S.vSol_.end());
 			S.imprimePosSolucion();
 
@@ -64,7 +61,7 @@ class SolGeneratorKP{
 			list<SolutionKP>::iterator it;
 
 			for(it = lista_.begin(); it != lista_.end(); it++){
-				if(it->getBeneficioTotal() > mejorSol_.getPesoTotal()){
+				if(it->getBeneficioTotal() > mejorSol_.getBeneficioTotal()){
 					mejorSol_.setPesoTotal(it->getPesoTotal());
 					mejorSol_.setBeneficioTotal(it->getBeneficioTotal());
 					mejorSol_.setVector(it->getVector());

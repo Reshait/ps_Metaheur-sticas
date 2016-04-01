@@ -9,7 +9,7 @@ class Objeto{
 		bool enMochila_;
 
 	public:
-		Objeto(){};
+		Objeto(){}
 		inline int getPeso(){ return peso_; }
 		inline int getBeneficio(){ return beneficio_; }
 		inline int getPosicion(){ return posicion_; }
