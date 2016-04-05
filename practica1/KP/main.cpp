@@ -27,7 +27,7 @@ int main(){
 	I.rellenaVector("knaPi.csv"); //cambiar por lo anterior cuando esté terminado.
 	SolGeneratorKP S(I.getNumEle());
 
-	for(int i = 0; i < 1; i++)
+	for(int i = 0; i < 1000; i++)
 		S.generaSolucion(I);
 
 	S.imprimeMejorSolucion();

@@ -34,28 +34,33 @@ class SolGeneratorKP{
 		inline void aniadeElementoLista(SolutionKP S){ lista_.push_back(S); }
 		inline void generaSolucion(InstanceKP I){
 			SolutionKP S(numElem);
-//			float ale = rand()%100;
-//			ale/=100;
+
 ///// Añadido por Carlos para admitir soluciones no válidas y después aplicarle un fitness;			
 			for (int i = 0; i < I.getNumEle(); i++){
 				if ((((double)rand()) / RAND_MAX) < 0.5){
 					S.setPesoTotal(S.getPesoTotal() + I.vector_.at(i).getPeso());
 					S.setBeneficioTotal(S.getBeneficioTotal() + I.vector_.at(i).getBeneficio());	
 					S.vSol_.at(i) = true; 
-//					cout << "Hola" << endl;
 				}
 			}
+
+			if(S.getPesoTotal() <= I.getPesoMax())
+				S.setFitness(S.getBeneficioTotal());
+			else
+				S.setFitness(I.getPesoMax() - S.getPesoTotal()); 
 
 			cout << "Beneficio obtenido\t ..: " << S.getBeneficioTotal() << endl;
 			cout << "Peso Total obtenido\t ..: " << S.getPesoTotal() << endl;
 			cout << "Peso Máximo permitido\t ..: " << I.getPesoMax() << endl;
+			cout << "Mejor Fitness\t\t ..: " << S.getFitness() << endl;
 
 			S.imprimeVectorSolucion();
 
-			if(S.getBeneficioTotal() > mejorSol_->getBeneficioTotal()){
+			if(S.getFitness() > mejorSol_->getFitness()){
 				mejorSol_->setPesoTotal(S.getPesoTotal());
 				mejorSol_->setBeneficioTotal(S.getBeneficioTotal());
-				mejorSol_->setVector(S.getVector());				
+				mejorSol_->setVector(S.getVector());
+				mejorSol_->setFitness(S.getFitness());				
 			}			
 		}
 
@@ -63,6 +68,7 @@ class SolGeneratorKP{
 			cout << "====================================" << endl;
 			cout << "Mejor Beneficio\t\t ..: " << mejorSol_->getBeneficioTotal() << endl;
 			cout << "Peso correspondiente\t ..: " << mejorSol_->getPesoTotal() << endl;
+			cout << "Fitness de la búsqueda\t ..:" << mejorSol_->getFitness() << endl;
 			cout << "Vector de posiciones usadas : " << endl;
 			mejorSol_->imprimeVectorSolucion();
 		}

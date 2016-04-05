@@ -16,13 +16,14 @@ class SolutionKP{
 		vector<bool> vSol_;
 		int bTotal_;
 		int pTotal_;
-		double fitness_; //si el peso es superior a la capacidad, asignar capacidad menos pesoTotal
+		long fitness_; //si el peso es superior a la capacidad, asignar capacidad menos pesoTotal
 						 //si el peso es inferior o igual a la capacidad, asignar el beneficioTotal
 
 	public:
 		SolutionKP(int numElem){
 			setBeneficioTotal(0);
 			setPesoTotal(0);
+			setFitness(-2147483648);
 
 			for (int i = 0; i < numElem; i++)
 				vSol_.push_back(false);
@@ -30,12 +31,12 @@ class SolutionKP{
 
 		inline int getBeneficioTotal(){ return bTotal_; }
 		inline int getPesoTotal(){ return pTotal_; }
-		//inline vector<int> getVector(){ return vSol_; }
+		inline long getFitness(){ return fitness_; }
 		inline vector<bool> getVector(){ return vSol_; }
 
 		inline void setBeneficioTotal(int beneficioTotal){ bTotal_ = beneficioTotal; }
 		inline void setPesoTotal(int pesoTotal){ pTotal_ = pesoTotal; }
-		//inline void setVector(vector<int> vector){ vSol_ = vector; }
+		inline void setFitness(long fit){ fitness_ = fit; }
 		inline void setVector(vector<bool> vector){ vSol_ = vector; }
 
 		inline void aniadePosSolucion(int posicion){
