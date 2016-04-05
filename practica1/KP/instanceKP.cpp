@@ -1,4 +1,4 @@
-#include "InstanceKP.hpp"
+#include "instanceKP.hpp"
 
 const vector<Objeto> InstanceKP::getVector(){
 	return vector_;

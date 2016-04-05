@@ -2,7 +2,9 @@
 #define __SOLGENERATORKP_HPP__
 
 #include <iostream>
+#include <string>
 #include <list>
+#include <algorithm> //para el sort en linux
 #include <cstdlib>
 #include "solutionKP.hpp"
 #include "instanceKP.hpp"
@@ -10,68 +12,59 @@
 
 using std::vector;
 using std::list;
-using std::to_string;
+using std::string;
 using std::sort;
 
 class SolGeneratorKP{
 	private:
 		list<SolutionKP> lista_;
-		SolutionKP mejorSol_;
+		SolutionKP *mejorSol_;
+		int numElem;
 
 	public:
-		SolGeneratorKP(){}
+		SolGeneratorKP(int numElem){
+			this->numElem = numElem;
+			mejorSol_ = new SolutionKP(numElem);
+		}
+
+		~SolGeneratorKP(){
+			delete mejorSol_;
+		}
 
 		inline void aniadeElementoLista(SolutionKP S){ lista_.push_back(S); }
 		inline void generaSolucion(InstanceKP I){
-			SolutionKP S;
-			int iteracion = 0;
-			vector<Objeto>::iterator i;
-			
-			while(S.getPesoTotal() <  I.getPesoMax() && iteracion < 200){
-				int aleatorio = rand() % 200;
-
-				//cout << "Num. Aleatorio (tiene que ir cambiando)\t ..: " << aleatorio << endl; //Si no cambia, se quedará en bucle infinito.
-				for(i = I.vector_.begin(); i < I.vector_.end(); i++){
-					if(i->getPosicion() == aleatorio){
-						if(!i->getEnMochila() && iteracion < 200){
-							iteracion++; // Para que si se queda cercano al pesoMaximo y no hay ningún objeto con ese peso, no se quede en bucle infinito
-							if(S.getPesoTotal() + i->getPeso() <= I.getPesoMax()){
-								i->setEnMochila(1);
-								S.setPesoTotal(S.getPesoTotal() + i->getPeso());
-								S.setBeneficioTotal(S.getBeneficioTotal() + i->getBeneficio());	
-								S.aniadePosSolucion(aleatorio);
-							}
-							break;
-						}
-					}
-
+			SolutionKP S(numElem);
+//			float ale = rand()%100;
+//			ale/=100;
+///// Añadido por Carlos para admitir soluciones no válidas y después aplicarle un fitness;			
+			for (int i = 0; i < I.getNumEle(); i++){
+				if ((((double)rand()) / RAND_MAX) < 0.5){
+					S.setPesoTotal(S.getPesoTotal() + I.vector_.at(i).getPeso());
+					S.setBeneficioTotal(S.getBeneficioTotal() + I.vector_.at(i).getBeneficio());	
+					S.vSol_.at(i) = true; 
+//					cout << "Hola" << endl;
 				}
-		
 			}
+
 			cout << "Beneficio obtenido\t ..: " << S.getBeneficioTotal() << endl;
 			cout << "Peso Total obtenido\t ..: " << S.getPesoTotal() << endl;
-			cout << "Peso Máximo permitido\t  ..: " << I.getPesoMax() << endl;
-			sort(S.vSol_.begin(), S.vSol_.end());
-			S.imprimePosSolucion();
+			cout << "Peso Máximo permitido\t ..: " << I.getPesoMax() << endl;
 
-			aniadeElementoLista(S);
+			S.imprimeVectorSolucion();
+
+			if(S.getBeneficioTotal() > mejorSol_->getBeneficioTotal()){
+				mejorSol_->setPesoTotal(S.getPesoTotal());
+				mejorSol_->setBeneficioTotal(S.getBeneficioTotal());
+				mejorSol_->setVector(S.getVector());				
+			}			
 		}
 
 		inline void imprimeMejorSolucion(){
-			list<SolutionKP>::iterator it;
-
-			for(it = lista_.begin(); it != lista_.end(); it++){
-				if(it->getBeneficioTotal() > mejorSol_.getBeneficioTotal()){
-					mejorSol_.setPesoTotal(it->getPesoTotal());
-					mejorSol_.setBeneficioTotal(it->getBeneficioTotal());
-					mejorSol_.setVector(it->getVector());
-				}
-			}
 			cout << "====================================" << endl;
-			cout << "Mejor Beneficio\t\t ..: " << mejorSol_.getBeneficioTotal() << endl;
-			cout << "Peso correspondiente\t ..: " << mejorSol_.getPesoTotal() << endl;
+			cout << "Mejor Beneficio\t\t ..: " << mejorSol_->getBeneficioTotal() << endl;
+			cout << "Peso correspondiente\t ..: " << mejorSol_->getPesoTotal() << endl;
 			cout << "Vector de posiciones usadas : " << endl;
-			mejorSol_.imprimePosSolucion();
+			mejorSol_->imprimeVectorSolucion();
 		}
 };
 

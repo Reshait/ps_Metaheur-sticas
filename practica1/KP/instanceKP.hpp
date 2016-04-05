@@ -7,7 +7,7 @@
 #include <fstream>
 #include <sstream> //para cazar las líneas del fichero
 #include "objeto.hpp"
-#include "SolutionKP.hpp"
+#include "solutionKP.hpp"
 
 using std::vector;
 using std::string;
@@ -37,8 +37,6 @@ class InstanceKP{
 		void imprimeVector();
 		bool estaVacio();
 		friend class SolGeneratorKP;
-
-//		int getValorAp(SolutionKP vBinarioSol);
 
 };
 
