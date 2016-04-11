@@ -1,12 +1,11 @@
 //compilar con:
-//g++ main.cpp instanceKP.cpp objeto.cpp
+//g++ main.cpp instanceTSP.cpp punto.cpp -lm
 
-#include <string>
 #include <ctime>
-#include "objeto.hpp"
+#include "punto.hpp"
 #include "instanceTSP.hpp"
-//#include "solutionKP.hpp"
-//#include "solGenerator.hpp"
+#include "solutionTSP.hpp"
+#include "solGeneratorTSP.hpp"
 
 
 using namespace std;
@@ -14,30 +13,27 @@ using namespace std;
 int main(){
 	InstanceKP I;
 	string nombreFichero;
+	SolutionTSP S;
+	SolGeneratorTSP Final;
 
 	system("clear");
 	srand(time(NULL));
 
-/*	do{
-		cout << "Introduzca el nombre del fichero a cargar ..: ";
-		cin >> nombreFichero;
-		I.rellenaVector(nombreFichero);
-	}while(!I.rellenaVector(nombreFichero));
-*/
-	I.rellenaVector("berlin52.tsp"); //cambiar por lo anterior cuando esté terminado.
+	I.rellenaVector("berlin52.tsp"); //Rellenando Vector
 
 	cout << "Nombre BBDD\t ..: " << I.getNombreBBDD() << endl;
 	cout << "Número de Ele\t ..: " << I.getNumEle() << endl;
 
+	for(int i = 0; i < 1000; i++){
+		S.setVectorSol(I.getVector());
+		S.cambiaPosiciones();
+		S.obtenSuma();
+//		S.imprimeSolucion();
+		Final.aniadeSolucion(S);
+		S.setSuma(0);
+	}
 
+	Final.getMejorSol().imprimeSolucion();
 
-/*
-	SolGeneratorKP S(I.getNumEle());
-
-	for(int i = 0; i < 1000; i++)
-		S.generaSolucion(I);
-
-	S.imprimeMejorSolucion();
-*/	
 	return 0;
 }

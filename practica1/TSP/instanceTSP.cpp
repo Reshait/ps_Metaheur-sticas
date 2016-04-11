@@ -1,20 +1,20 @@
 #include "instanceTSP.hpp"
 
-const vector<Objeto> InstanceKP::getVector(){
+const vector<Punto> InstanceKP::getVector(){
 	return vector_;
 }
 
-void InstanceKP::setVector(const vector<Objeto> &vector){
+void InstanceKP::setVector(const vector<Punto> &vector){
 	vector_ = vector;
 }
 
-void InstanceKP::aniadeElemento(const Objeto &O){
-	vector_.push_back(O);
+void InstanceKP::aniadeElemento(const Punto &P){
+	vector_.push_back(P);
 }
 
 bool InstanceKP::rellenaVector(const string &nombreFichero){
-	Objeto O;
-	string linea, beneficio, peso, posicion, enMochila, desechable;
+	Punto P;
+	string linea, x, y, nNodo, desechable;
 	int i = 0;
 
 	ifstream bbddEntrada(nombreFichero.c_str());
@@ -46,15 +46,15 @@ bool InstanceKP::rellenaVector(const string &nombreFichero){
 
 			stringstream lineaCompleta(linea);
 
-			getline(lineaCompleta, posicion, ' ');
-			getline(lineaCompleta, beneficio, ' ');
-			getline(lineaCompleta, peso, ' ');
+			getline(lineaCompleta, nNodo, ' ');
+			getline(lineaCompleta, x, ' ');
+			getline(lineaCompleta, y, ' ');
 
-			O.setPosicion(atoi(posicion.c_str()));
-			O.setBeneficio(atof(beneficio.c_str()));
-			O.setPeso(atof(peso.c_str()));
+			P.setNumNodo(atoi(nNodo.c_str()));
+			P.setX(atof(x.c_str()));
+			P.setY(atof(y.c_str()));
 
-			aniadeElemento(O);
+			aniadeElemento(P);
 			i++;
 		}
 		
@@ -66,9 +66,9 @@ bool InstanceKP::rellenaVector(const string &nombreFichero){
 }
 
 void InstanceKP::imprimeVector(){
-	vector<Objeto>:: iterator i;
+	vector<Punto>:: iterator i;
 	for(i = vector_.begin(); i != vector_.end(); i++){
-		cout << "Posición\t ..: " << i->getPosicion() << "    \t" << "Beneficio\t.: " << i->getBeneficio() << endl;
+		cout << "Número de Nodo\t ..: " << i->getNumNodo() << "    \t" << "Coordenada X\t.: " << i->getX() << endl;
 	}
 	cout << "Número de elementos\t ..: " << getNumEle() << endl;
 }

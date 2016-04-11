@@ -6,7 +6,7 @@
 #include <string>
 #include <fstream>
 #include <sstream> //para cazar las líneas del fichero
-#include "objeto.hpp"
+#include "punto.hpp"
 //#include "solutionKP.hpp"
 
 using std::vector;
@@ -19,24 +19,23 @@ using std::cin;
 
 class InstanceKP{
 	private:
-		vector<Objeto> vector_;
+		vector<Punto> vector_;
 		int numElementos_;
 		string nombreBBDD_;
 
 	public:
 		InstanceKP(){};
-		const vector<Objeto> getVector();
+		const vector<Punto> getVector();
 		inline int getNumEle(){ return numElementos_; }
 		inline string getNombreBBDD(){ return nombreBBDD_; }
 
 		inline void setNombreBBDD(string nombre){ nombreBBDD_ = nombre; } 
-		void setVector(const vector<Objeto> &vector);
+		void setVector(const vector<Punto> &vector);
 		inline void setNumEle(int numEle){ numElementos_ = numEle; }
-		void aniadeElemento(const Objeto &O);
+		void aniadeElemento(const Punto &P);
 		bool rellenaVector(const string &nombreFichero);
 		void imprimeVector();
 		bool estaVacio();
-		friend class SolGeneratorKP;
 
 };
 
