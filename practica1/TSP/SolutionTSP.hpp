@@ -60,7 +60,16 @@ class SolutionTSP{
 		}
 
 		inline void cambiaPosiciones(){
-			int pos1 = rand() % (getVectorSol().size()-1) + 1;
+			Punto Aux;
+			int aleatorio;
+
+			for(int i = 0; i < getVectorSol().size(); i++){
+				aleatorio = rand() % (getVectorSol().size()-1) + 1;
+				Aux = vectorSol_.at(i);
+				vectorSol_.at(i) = vectorSol_.at(aleatorio);
+				vectorSol_.at(aleatorio) = Aux;
+			}
+/*			int pos1 = rand() % (getVectorSol().size()-1) + 1;
 			int pos2 = pos1;
 
 			while(pos2 == pos1) 
@@ -69,7 +78,7 @@ class SolutionTSP{
 			Punto Aux = vectorSol_.at(pos1);
 			vectorSol_.at(pos1) = vectorSol_.at(pos2);
 			vectorSol_.at(pos2) = Aux;
-
+*/
 		}
 };
 #endif
