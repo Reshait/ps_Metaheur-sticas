@@ -24,13 +24,16 @@ int main(){
 		I.rellenaVector(nombreFichero);
 	}while(!I.rellenaVector(nombreFichero));
 */
-	I.rellenaVector("knaPi.csv"); //cambiar por lo anterior cuando esté terminado.
+	I.rellenaVector("k200.csv"); //cambiar por lo anterior cuando esté terminado.
 	SolGeneratorKP S(I.getNumEle());
 
-	for(int i = 0; i < 1000; i++)
+	for(int i = 0; i < 1000; i++){
 		S.generaSolucion(I);
+		S.imprimeMejorSolucion();
 
-	S.imprimeMejorSolucion();
+	}
+
+//	S.imprimeMejorSolucion();
 	
 	return 0;
 }

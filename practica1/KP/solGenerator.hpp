@@ -49,12 +49,12 @@ class SolGeneratorKP{
 			else
 				S.setFitness(I.getPesoMax() - S.getPesoTotal()); 
 
-			cout << "Beneficio obtenido\t ..: " << S.getBeneficioTotal() << endl;
-			cout << "Peso Total obtenido\t ..: " << S.getPesoTotal() << endl;
-			cout << "Peso Máximo permitido\t ..: " << I.getPesoMax() << endl;
-			cout << "Mejor Fitness\t\t ..: " << S.getFitness() << endl;
+			//cout << "Beneficio obtenido\t ..: " << S.getBeneficioTotal() << endl;
+			//cout << "Peso Total obtenido\t ..: " << S.getPesoTotal() << endl;
+			//cout << "Peso Máximo permitido\t ..: " << I.getPesoMax() << endl;
+			//cout << "Mejor Fitness\t\t ..: " << S.getFitness() << endl;
 
-			S.imprimeVectorSolucion();
+			//S.imprimeVectorSolucion();
 
 			if(S.getFitness() > mejorSol_->getFitness()){
 				mejorSol_->setPesoTotal(S.getPesoTotal());
@@ -65,12 +65,13 @@ class SolGeneratorKP{
 		}
 
 		inline void imprimeMejorSolucion(){
-			cout << "====================================" << endl;
-			cout << "Mejor Beneficio\t\t ..: " << mejorSol_->getBeneficioTotal() << endl;
-			cout << "Peso correspondiente\t ..: " << mejorSol_->getPesoTotal() << endl;
-			cout << "Fitness de la búsqueda\t ..:" << mejorSol_->getFitness() << endl;
-			cout << "Vector de posiciones usadas : " << endl;
-			mejorSol_->imprimeVectorSolucion();
+			//cout << "====================================" << endl;
+			//cout << "Mejor Beneficio\t\t ..: " << mejorSol_->getBeneficioTotal() << endl;
+			//cout << "Peso correspondiente\t ..: " << mejorSol_->getPesoTotal() << endl;
+			//cout << "Fitness de la búsqueda\t ..:" << mejorSol_->getFitness() << endl;
+			cout << mejorSol_->getFitness() << endl;
+			//cout << "Vector de posiciones usadas : " << endl;
+			//mejorSol_->imprimeVectorSolucion();
 		}
 };
 
