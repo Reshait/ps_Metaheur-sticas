@@ -31,6 +31,9 @@ int main(){
 //		S.imprimeSolucion();
 		Final.aniadeSolucion(S);
 		S.setSuma(0);
+		if(i == 99 || i == 199 || i == 299 || i == 399 || i == 499 || i == 599 || i == 699 || i == 799 || i == 899)
+			Final.getMejorSol().imprimeSolucion();
+
 	}
 
 	Final.getMejorSol().imprimeSolucion();
